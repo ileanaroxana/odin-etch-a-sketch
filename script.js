@@ -21,10 +21,19 @@ function createGrid(size) {
     }
 }
 
-const btn = document.querySelector("#new");
-    btn.addEventListener("click", () => {
+const btnNew = document.querySelector("#new");
+    btnNew.addEventListener("click", () => {
         createGrid(getSize());
     });
+
+const btnClear = document.querySelector("#clear");
+btnClear.addEventListener("click", () => {
+    const grid = document.querySelectorAll(".square");
+    grid.forEach((cell) => {
+        cell.style.backgroundColor = "";
+    });
+});
+      
 
 function reset() {
     const grid = document.querySelectorAll(".square");
