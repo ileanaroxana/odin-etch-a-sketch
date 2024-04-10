@@ -1,24 +1,34 @@
 createGrid(16);
 
 function createGrid(size) {
-    const container = document.querySelector("#container");
-    container.textContent = "";
-    reset();
+  const container = document.querySelector("#container");
+  container.textContent = "";
+  reset();
 
-    for (let i = 0; i < size; i++) {
-        for (let j = 0; j < size; j++) {
-            const square = document.createElement("div");
-            square.classList.add("square");
-            square.style.width = 960 / size + "px";
-            square.style.height = 960 / size + "px";
-            container.appendChild(square);
+  for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+          const square = document.createElement("div");
+          square.classList.add("square");
+          square.style.width = 960 / size + "px";
+          square.style.height = 960 / size + "px";
+          container.appendChild(square);
 
-            square.addEventListener("mouseover", () => {
-                square.style.backgroundColor = generateRandomColor();
-            });
-        }
-    }
+          square.addEventListener("mouseover", (e) => {
+              square.style.backgroundColor = generateRandomColor();
+          });
+      }
+  }
 }
+
+const btnOpacity = document.querySelector("#opacity");
+btnOpacity.addEventListener("click", () => {
+  const squares = document.querySelectorAll(".square");
+  squares.forEach((square) => {
+    square.addEventListener("mouseover", (e) => {
+      increaseOpacity(e);
+    })
+  });
+});
 
 const btnNew = document.querySelector("#new");
 btnNew.addEventListener("click", () => {
@@ -58,4 +68,15 @@ function generateRandomColor() {
     const color = `rgb(${red}, ${green}, ${blue})`;
 
     return color;
+}
+
+function increaseOpacity(e) {
+  if (!e.target.style.opacity)
+    e.target.style.opacity = "0.1";
+
+  if (e.target.style.opacity === "1")
+    return;
+  
+  let opacity = parseFloat(e.target.style.opacity);
+  e.target.style.opacity = opacity + 0.1;
 }
