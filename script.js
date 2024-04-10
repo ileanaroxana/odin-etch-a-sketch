@@ -13,25 +13,21 @@ function createGrid(size) {
             square.style.height = 960 / size + "px";
             container.appendChild(square);
 
-            square.addEventListener("mouseover", (e) => {
+            square.addEventListener("mouseover", () => {
                 square.style.backgroundColor = generateRandomColor();
-
             });
         }
     }
 }
 
 const btnNew = document.querySelector("#new");
-    btnNew.addEventListener("click", () => {
-        createGrid(getSize());
-    });
+btnNew.addEventListener("click", () => {
+    createGrid(getSize());
+});
 
 const btnClear = document.querySelector("#clear");
 btnClear.addEventListener("click", () => {
-    const grid = document.querySelectorAll(".square");
-    grid.forEach((cell) => {
-        cell.style.backgroundColor = "";
-    });
+    reset();
 });
       
 
